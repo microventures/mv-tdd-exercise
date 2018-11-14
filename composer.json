@@ -1,0 +1,14 @@
+{
+    "name": "microventures/mv-tdd-exercise",
+    "description": "A TDD-Driven Exercise for MicroVentures Dev Candidates",
+    "authors": [
+        {
+            "name": "Erik Telford",
+            "email": "erik@microventures.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    }
+}
