@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain;
 
+use App\Validation\EmailAddress;
+
 /**
  * Class Investor.
  */
@@ -29,16 +31,16 @@ class Investor
     /**
      * Investor constructor.
      *
-     * @param string $firstName
-     * @param string $lastName
-     * @param string $email
-     * @param bool   $approved
+     * @param string       $firstName
+     * @param string       $lastName
+     * @param EmailAddress $email
+     * @param bool         $approved
      */
-    public function __construct(string $firstName, string $lastName, string $email, bool $approved = false)
+    public function __construct(string $firstName, string $lastName, EmailAddress $email, bool $approved = false)
     {
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
-        $this->setEmail($email);
+        $this->setEmail($email->getEmailAddress());
         $this->setApproved($approved);
     }
 
@@ -51,35 +53,11 @@ class Investor
     }
 
     /**
-     * @param string $firstName
-     *
-     * @return Investor
-     */
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getLastName(): string
     {
         return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     *
-     * @return Investor
-     */
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
     }
 
     /**
@@ -91,18 +69,6 @@ class Investor
     }
 
     /**
-     * @param string $email
-     *
-     * @return Investor
-     */
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isApproved(): bool
@@ -111,11 +77,47 @@ class Investor
     }
 
     /**
+     * @param string $firstName
+     *
+     * @return Investor
+     */
+    private function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * @param string $lastName
+     *
+     * @return Investor
+     */
+    private function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * @param string $email
+     *
+     * @return Investor
+     */
+    private function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
      * @param bool $approved
      *
      * @return Investor
      */
-    public function setApproved(bool $approved): self
+    private function setApproved(bool $approved): self
     {
         $this->approved = $approved;
 

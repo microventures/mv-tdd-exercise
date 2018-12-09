@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace tests\Uint;
+namespace tests\Unit;
 
 use App\Domain\Investor;
+use App\Validation\EmailAddress;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
@@ -23,6 +24,9 @@ class InvestorTest extends TestCase
     /** @var null */
     private $investor = null;
 
+    /**
+     * @throws \Exception
+     */
     public function setUp()
     {
         parent::setUp();
@@ -31,7 +35,7 @@ class InvestorTest extends TestCase
             new Investor(
                 self::firstName,
                 self::lastName,
-                self::email
+                new EmailAddress(self::email)
             )
         );
     }
@@ -94,20 +98,21 @@ class InvestorTest extends TestCase
         $this->expectExceptionMessage('must be of the type boolean, null given,');
 
         /* @noinspection PhpStrictTypeCheckingInspection */
-        new Investor(self::firstName, self::email, self::email, $dummyValue);
+        new Investor(self::firstName, self::email, new EmailAddress(self::email), $dummyValue);
     }
 
-    public function test_valid_email_address_constructed()
+    /**
+     * @throws \Exception
+     */
+    public function test_fails_construction_on_invalid_email_address()
     {
-        $this->setInvestor(
-            new Investor(
-                self::firstName,
-                self::lastName,
-                'bob@bob.com'
-            )
-        );
+        $this->expectExceptionMessage('invalid email address found.');
 
-        $this->assertRegExp('/^.+\@\S+\.\S+$/', $this->getInvestor()->getEmail());
+        new Investor(
+            self::firstName,
+            self::lastName,
+            new EmailAddress('bob')
+        );
     }
 
     /**
