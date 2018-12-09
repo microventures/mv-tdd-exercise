@@ -60,7 +60,7 @@ class InvestmentTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function test_none_PaymentMethod_type()
+    public function test_invalid_payment_method()
     {
         $this->expectExceptionMessage('not a valid payment method');
 

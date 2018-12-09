@@ -17,15 +17,47 @@ class Offering
      * @var int
      */
     private $maxInvestmentsAllowed;
+    /**
+     * @var array<Investment>
+     */
+    private $investments = [];
 
+    /**
+     * Offering constructor.
+     *
+     * @param string $name
+     * @param int    $maxInvestmentsAllowed
+     *
+     * @throws \Exception
+     */
     public function __construct(string $name, int $maxInvestmentsAllowed)
     {
         $this->setName($name);
         $this->setMaxInvestmentsAllowed($maxInvestmentsAllowed);
     }
 
-    public function addInvestment()
+    /**
+     * @param Investment $investment
+     *
+     * @throws \Exception
+     */
+    public function addInvestment(Investment $investment)
     {
+        $count = empty($this->investments[0]) ? 0 : \count($this->investments);
+
+        if (($count + 1) > $this->maxInvestmentsAllowed) {
+            throw new \Exception('maximum number of investment reached.');
+        }
+
+        $this->investments[] = $investment;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInvestments(): array
+    {
+        return $this->investments;
     }
 
     /**
@@ -60,8 +92,10 @@ class Offering
      * @param int $maxInvestmentsAllowed
      *
      * @return Offering
+     *
+     * @throws \Exception
      */
-    public function setMaxInvestmentsAllowed(int $maxInvestmentsAllowed): self
+    private function setMaxInvestmentsAllowed(int $maxInvestmentsAllowed): self
     {
         $this->maxInvestmentsAllowed = $maxInvestmentsAllowed;
 

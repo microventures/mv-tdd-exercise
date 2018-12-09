@@ -20,6 +20,12 @@ class Investment
      */
     private $paymentMethod;
 
+    /**
+     * Investment constructor.
+     *
+     * @param int           $amount
+     * @param PaymentMethod $paymentMethod
+     */
     public function __construct(int $amount, PaymentMethod $paymentMethod)
     {
         $this->setAmount($amount);
