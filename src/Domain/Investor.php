@@ -27,21 +27,55 @@ class Investor
      * @var bool
      */
     private $approved;
+    /**
+     * @var array<Offering>
+     */
+    private $offeringsInvestedIn;
 
     /**
      * Investor constructor.
      *
      * @param string       $firstName
      * @param string       $lastName
-     * @param EmailAddress $email
+     * @param EmailAddress $emailAddress
      * @param bool         $approved
      */
-    public function __construct(string $firstName, string $lastName, EmailAddress $email, bool $approved = false)
+    public function __construct(string $firstName, string $lastName, EmailAddress $emailAddress, bool $approved = false)
     {
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
-        $this->setEmail($email->getEmailAddress());
+        $this->setEmail($emailAddress->getEmailAddress());
         $this->setApproved($approved);
+    }
+
+    /**
+     * @param Offering $offering
+     *
+     * @return Investor
+     */
+    public function addOffering(Offering $offering): self
+    {
+        $this->offeringsInvestedIn[] = $offering;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalDollarsInvested()
+    {
+        $totalDollarsInvested = 0;
+
+        /** @var Offering $offering */
+        foreach ($this->offeringsInvestedIn as $offering) {
+            /** @var Investment $investment */
+            foreach ($offering->getInvestments() as $investment) {
+                $totalDollarsInvested += $investment->getAmount();
+            }
+        }
+
+        return $totalDollarsInvested;
     }
 
     /**

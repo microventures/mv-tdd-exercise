@@ -21,7 +21,7 @@ class InvestorTest extends TestCase
     /** @var string */
     const email = 'jones_rich@yahoo.com';
 
-    /** @var null */
+    /** @var Investor */
     private $investor = null;
 
     /**
