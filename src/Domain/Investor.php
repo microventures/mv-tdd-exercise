@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Domain;
 
 /**
- * Class Investors.
+ * Class Investor.
  */
-class Investors
+class Investor
 {
     /**
      * @var string
@@ -27,7 +27,7 @@ class Investors
     private $approved;
 
     /**
-     * Investors constructor.
+     * Investor constructor.
      *
      * @param string $firstName
      * @param string $lastName
@@ -53,7 +53,7 @@ class Investors
     /**
      * @param string $firstName
      *
-     * @return Investors
+     * @return Investor
      */
     public function setFirstName(string $firstName): self
     {
@@ -73,7 +73,7 @@ class Investors
     /**
      * @param string $lastName
      *
-     * @return Investors
+     * @return Investor
      */
     public function setLastName(string $lastName): self
     {
@@ -93,7 +93,7 @@ class Investors
     /**
      * @param string $email
      *
-     * @return Investors
+     * @return Investor
      */
     public function setEmail(string $email): self
     {
@@ -113,7 +113,7 @@ class Investors
     /**
      * @param bool $approved
      *
-     * @return Investors
+     * @return Investor
      */
     public function setApproved(bool $approved): self
     {
