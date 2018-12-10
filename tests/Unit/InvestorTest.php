@@ -60,6 +60,24 @@ class InvestorTest extends TestCase
         $this->assertNotTrue($this->getInvestor()->isApproved());
     }
 
+    public function test_approved_value_set_true()
+    {
+        $this->assertTrue(
+            $this->getInvestor()
+                ->setApproved(true)
+                ->isApproved()
+        );
+    }
+
+    public function test_approved_value_set_false()
+    {
+        $this->assertNotTrue(
+            $this->getInvestor()
+                ->setApproved(false)
+                ->isApproved()
+        );
+    }
+
     /**
      * tests if a null is passed to string param(s) on Investor class
      * construction.
@@ -90,6 +108,20 @@ class InvestorTest extends TestCase
     }
 
     /**
+     * @throws \Exception
+     */
+    public function test_fails_construction_on_invalid_email_address()
+    {
+        $this->expectExceptionMessage('invalid email address found.');
+
+        new Investor(
+            self::firstName,
+            self::lastName,
+            new EmailAddress('bob')
+        );
+    }
+
+    /**
      * tests if a null is passed to bool param(s) on Investor class
      * construction.
      *
@@ -107,20 +139,6 @@ class InvestorTest extends TestCase
             self::email,
             new EmailAddress(self::email),
             $dummyValue
-        );
-    }
-
-    /**
-     * @throws \Exception
-     */
-    public function test_fails_construction_on_invalid_email_address()
-    {
-        $this->expectExceptionMessage('invalid email address found.');
-
-        new Investor(
-            self::firstName,
-            self::lastName,
-            new EmailAddress('bob')
         );
     }
 

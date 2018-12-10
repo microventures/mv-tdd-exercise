@@ -52,9 +52,15 @@ class Investor
      * @param Offering $offering
      *
      * @return Investor
+     *
+     * @throws \Exception
      */
     public function addOffering(Offering $offering): self
     {
+        if ( ! $this->isApproved()) {
+            throw new \Exception('Investor not approved.');
+        }
+
         $this->offeringsInvestedIn[] = $offering;
 
         return $this;
@@ -111,6 +117,18 @@ class Investor
     }
 
     /**
+     * @param bool $approved
+     *
+     * @return Investor
+     */
+    public function setApproved(bool $approved): self
+    {
+        $this->approved = $approved;
+
+        return $this;
+    }
+
+    /**
      * @param string $firstName
      *
      * @return Investor
@@ -142,18 +160,6 @@ class Investor
     private function setEmail(string $email): self
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * @param bool $approved
-     *
-     * @return Investor
-     */
-    private function setApproved(bool $approved): self
-    {
-        $this->approved = $approved;
 
         return $this;
     }

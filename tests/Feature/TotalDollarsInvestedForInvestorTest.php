@@ -85,6 +85,11 @@ class TotalDollarsInvestedForInvestorTest extends TestCase
         $offerB->addInvestment($investmentD);
 
         //
+        // approve the Investor for investments
+        //
+        $this->getInvestor()->setApproved(true);
+
+        //
         // add offers to Investor
         //
         $this->getInvestor()->addOffering($offerA);
@@ -97,6 +102,36 @@ class TotalDollarsInvestedForInvestorTest extends TestCase
     public function test_total_dollars_without_offering()
     {
         $this->assertSame(0, $this->getInvestor()->getTotalDollarsInvested());
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function test_investor_not_approved_for_investments()
+    {
+        //
+        // build investments
+        //
+        $investmentA = new Investment(
+            1000,
+            new PaymentMethod(PaymentMethod::CASH)
+        );
+
+        //
+        // build offers
+        //
+        $offerA = new Offering(
+            'Offer A',
+            2
+        );
+        $offerA->addInvestment($investmentA);
+
+        $this->expectExceptionMessage('Investor not approved.');
+
+        //
+        // add offers to Investor
+        //
+        $this->getInvestor()->addOffering($offerA);
     }
 
     /**
