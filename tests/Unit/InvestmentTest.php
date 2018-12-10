@@ -35,12 +35,12 @@ class InvestmentTest extends TestCase
 
     public function test_amount_constructed()
     {
-        $this->assertSame($this->getInvestment()->getAmount(), self::myAmount);
+        $this->assertSame(self::myAmount, $this->getInvestment()->getAmount());
     }
 
     public function test_payment_method_constructed()
     {
-        $this->assertSame($this->getInvestment()->getPaymentMethod(), self::myPaymentMethod);
+        $this->assertSame(self::myPaymentMethod, $this->getInvestment()->getPaymentMethod());
     }
 
     /**

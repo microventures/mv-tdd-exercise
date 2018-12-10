@@ -36,12 +36,18 @@ class OfferingTest extends TestCase
 
     public function test_offer_name_constructed()
     {
-        $this->assertSame($this->getOffering()->getName(), self::OFFER_NAME);
+        $this->assertSame(
+            self::OFFER_NAME,
+            $this->getOffering()->getName()
+        );
     }
 
     public function test_max_investments_allowed_constructed()
     {
-        $this->assertSame($this->getOffering()->getMaxInvestmentsAllowed(), self::MAX_INVESTMENT_FOR_OFFERING);
+        $this->assertSame(
+            self::MAX_INVESTMENT_FOR_OFFERING,
+            $this->getOffering()->getMaxInvestmentsAllowed()
+        );
     }
 
     /**
@@ -69,7 +75,10 @@ class OfferingTest extends TestCase
             )
         );
 
-        $this->assertCount(1, $this->getOffering()->getInvestments());
+        $this->assertCount(
+            1,
+            $this->getOffering()->getInvestments()
+        );
     }
 
     /**

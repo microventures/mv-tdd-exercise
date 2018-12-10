@@ -30,7 +30,7 @@ class Investor
     /**
      * @var array<Offering>
      */
-    private $offeringsInvestedIn;
+    private $offeringsInvestedIn = [];
 
     /**
      * Investor constructor.
@@ -63,7 +63,7 @@ class Investor
     /**
      * @return int
      */
-    public function getTotalDollarsInvested()
+    public function getTotalDollarsInvested(): int
     {
         $totalDollarsInvested = 0;
 

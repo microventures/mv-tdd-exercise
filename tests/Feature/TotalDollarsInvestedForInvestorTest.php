@@ -49,22 +49,22 @@ class TotalDollarsInvestedForInvestorTest extends TestCase
         //
         $investmentA = new Investment(
             1000,
-            new PaymentMethod('cash')
+            new PaymentMethod(PaymentMethod::CASH)
         );
 
         $investmentB = new Investment(
             2000,
-            new PaymentMethod('cash')
+            new PaymentMethod(PaymentMethod::CASH)
         );
 
         $investmentC = new Investment(
             1000,
-            new PaymentMethod('check')
+            new PaymentMethod(PaymentMethod::CHECK)
         );
 
         $investmentD = new Investment(
             2000,
-            new PaymentMethod('check')
+            new PaymentMethod(PaymentMethod::CHECK)
         );
 
         //
@@ -92,6 +92,11 @@ class TotalDollarsInvestedForInvestorTest extends TestCase
 
         // check that they match...
         $this->assertSame(6000, $this->getInvestor()->getTotalDollarsInvested());
+    }
+
+    public function test_total_dollars_without_offering()
+    {
+        $this->assertSame(0, $this->getInvestor()->getTotalDollarsInvested());
     }
 
     /**

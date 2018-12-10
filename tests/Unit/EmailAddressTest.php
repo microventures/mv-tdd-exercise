@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class EmailAddressTest extends TestCase
 {
-
     /**
      * @throws \Exception
      */
@@ -17,7 +16,7 @@ class EmailAddressTest extends TestCase
     {
         $emailAddress = 'bob@bob.com';
 
-        $this->assertEquals((new EmailAddress($emailAddress))->getEmailAddress(), $emailAddress);
+        $this->assertSame($emailAddress, (new EmailAddress($emailAddress))->getEmailAddress());
     }
 
     /**
@@ -29,6 +28,6 @@ class EmailAddressTest extends TestCase
 
         $this->expectExceptionMessage('invalid email address found.');
 
-        $this->assertEquals((new EmailAddress($emailAddress))->getEmailAddress(), $emailAddress);
+        new EmailAddress($emailAddress);
     }
 }

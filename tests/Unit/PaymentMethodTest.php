@@ -18,7 +18,7 @@ class PaymentMethodTest extends TestCase
 
         $paymentMethod = new PaymentMethod($myPaymentMethod);
 
-        $this->assertSame($paymentMethod->getPaymentMethod(), $myPaymentMethod);
+        $this->assertSame($myPaymentMethod, $paymentMethod->getPaymentMethod());
     }
 
     /**
@@ -30,7 +30,7 @@ class PaymentMethodTest extends TestCase
 
         $paymentMethod = new PaymentMethod($myPaymentMethod);
 
-        $this->assertSame($paymentMethod->getPaymentMethod(), $myPaymentMethod);
+        $this->assertSame($myPaymentMethod, $paymentMethod->getPaymentMethod());
     }
 
     /**
@@ -42,7 +42,7 @@ class PaymentMethodTest extends TestCase
 
         $paymentMethod = new PaymentMethod($myPaymentMethod);
 
-        $this->assertSame($paymentMethod->getPaymentMethod(), $myPaymentMethod);
+        $this->assertSame($myPaymentMethod, $paymentMethod->getPaymentMethod());
     }
 
     /**

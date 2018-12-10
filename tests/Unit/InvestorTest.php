@@ -79,7 +79,11 @@ class InvestorTest extends TestCase
             $prior = $value;
             $params[$key] = null;
 
-            new Investor($params['firstName'], $params['lastName'], $params['email']);
+            new Investor(
+                $params['firstName'],
+                $params['lastName'],
+                $params['email']
+            );
 
             $params[$key] = $prior;
         }
@@ -98,7 +102,12 @@ class InvestorTest extends TestCase
         $this->expectExceptionMessage('must be of the type boolean, null given,');
 
         /* @noinspection PhpStrictTypeCheckingInspection */
-        new Investor(self::firstName, self::email, new EmailAddress(self::email), $dummyValue);
+        new Investor(
+            self::firstName,
+            self::email,
+            new EmailAddress(self::email),
+            $dummyValue
+        );
     }
 
     /**
